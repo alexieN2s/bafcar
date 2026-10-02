@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mașina mea</title>
+<style>
+:root{--bg:#f2f2f7;--card:#fff;--tx:#000;--tx2:#8a8a8e;--line:#e5e5ea;--ac:#007aff;--ok:#34c759;--wa:#ff9500;--er:#ff3b30;--glass:rgba(249,249,251,.72);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--card:#1c1c1e;--tx:#fff;--tx2:#98989f;--line:#38383a;--ac:#0a84ff;--glass:rgba(28,28,30,.72)}}
+:root[data-theme="dark"]{--bg:#000;--card:#1c1c1e;--tx:#fff;--tx2:#98989f;--line:#38383a;--ac:#0a84ff;--glass:rgba(28,28,30,.72)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.35 -apple-system,"SF Pro Text",system-ui,"Helvetica Neue",sans-serif}
+main{max-width:520px;margin:0 auto;padding:12px 16px 120px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;margin:18px 4px 14px}
+h1{font-size:34px;letter-spacing:-.6px;margin:0;font-weight:700}
+h1 i{font-style:normal;color:var(--ac);font-size:20px}
+.add{width:36px;height:36px;border-radius:50%;border:0;background:var(--ac);color:#fff;font-size:24px;line-height:1}
+h2{font-size:13px;color:var(--tx2);font-weight:400;margin:22px 16px 6px}
+.grp{background:var(--card);border-radius:18px;overflow:hidden}
+.row{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border:0;border-top:.5px solid var(--line);align-items:center;width:100%;background:none;color:inherit;font:inherit;text-align:left}
+.row:first-child{border-top:0}
+.row small,.stats small{display:block;color:var(--tx2);font-size:13px}
+.r{text-align:right;white-space:nowrap}
+.hero{background:var(--card);border-radius:22px;padding:20px}
+.big{font-size:52px;font-weight:700;letter-spacing:-1.5px;line-height:1;margin-top:6px}
+.big span{font-size:18px;color:var(--tx2);font-weight:500;letter-spacing:0;margin-left:4px}
+.stats{display:flex;gap:10px;margin-top:10px}
+.stats>div{flex:1;background:var(--card);border-radius:18px;padding:14px}
+.stats b{font-size:21px;display:block;letter-spacing:-.4px}
+.pill{font-size:13px;font-weight:600;padding:3px 10px;border-radius:99px;color:#fff;white-space:nowrap}
+.ok{background:var(--ok)}.wa{background:var(--wa)}.er{background:var(--er)}.no{background:var(--tx2)}
+.alert{background:var(--er);color:#fff;border-radius:16px;padding:12px 16px;margin-bottom:10px;font-weight:500}
+.alert.w{background:var(--wa)}
+.empty{padding:22px 16px;color:var(--tx2);text-align:center}
+svg text{fill:var(--tx2);font:10px -apple-system,system-ui,sans-serif}
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:2px;padding:5px;border-radius:32px;background:var(--glass);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);box-shadow:0 8px 30px rgba(0,0,0,.18),inset 0 0 0 .5px rgba(255,255,255,.35);width:min(92vw,420px)}
+nav button{flex:1;border:0;background:none;color:var(--tx2);font:600 11px -apple-system,system-ui,sans-serif;padding:8px 0 6px;border-radius:26px}
+nav svg{display:block;margin:0 auto 2px;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--ac);background:rgba(120,120,128,.16)}
+.sh{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:flex-end;z-index:9;overflow:auto}
+.sh.o{display:flex}
+.sheet{background:var(--bg);width:100%;max-width:520px;margin:auto auto 0;border-radius:26px 26px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px));animation:up .28s cubic-bezier(.2,.9,.3,1)}
+@keyframes up{from{transform:translateY(40%);opacity:.4}}
+@media(prefers-reduced-motion:reduce){.sheet{animation:none}}
+.sheet h3{margin:2px 0 12px;text-align:center;font-size:17px}
+.f{display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-top:.5px solid var(--line);min-height:46px;background:var(--card)}
+.f:first-child{border-top:0}
+.f label{flex:0 0 42%}
+.f input{flex:1;border:0;background:none;color:var(--tx);font:inherit;text-align:right;min-width:0;padding:10px 0;outline:0}
+.btn{width:100%;border:0;border-radius:14px;padding:14px;font:600 17px -apple-system,system-ui,sans-serif;background:var(--ac);color:#fff;margin-top:14px}
+.btn.d{background:none;color:var(--er);margin-top:4px}
+.btn.c{background:none;color:var(--ac);margin-top:0}
+.hint{color:var(--tx2);font-size:13px;margin:10px 16px 0}
+#tt{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:9px 16px;border-radius:99px;font-size:14px;z-index:20;display:none;max-width:90vw}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<nav id="nav"></nav>
+<div class="sh" id="sh"><div class="sheet" id="sheet"></div></div>
+<div id="tt"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S=null,tab='home';
+try{S=JSON.parse(localStorage.getItem('masina'))}catch(e){}
+S=S||{};S.fuel=S.fuel||[];S.service=S.service||[];
+if(!S.cars){const id='c1';S.cars=[{id,name:'Mașina mea',fuel:'',ikm:'',imo:'',docs:Object.assign({itp:'',rca:'',rov:''},S.docs)}];S.cur=id;S.fuel.forEach(x=>x.car=id);S.service.forEach(x=>x.car=id);delete S.docs}
+const toast=m=>{const t=$('#tt');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3200)};
+const save=()=>{try{localStorage.setItem('masina',JSON.stringify(S))}catch(e){toast('Nu s-au putut salva datele')}};
+const car=()=>S.cars.find(c=>c.id===S.cur)||S.cars[0];
+const F=()=>S.fuel.filter(x=>x.car===car().id),V=()=>S.service.filter(x=>x.car===car().id);
+const today=()=>new Date().toISOString().slice(0,10);
+const n=(v,d=1)=>Number(v).toLocaleString('ro-RO',{maximumFractionDigits:d,minimumFractionDigits:d});
+const lei=v=>n(v,2)+' lei';
+const fd=d=>d?new Date(d+'T00:00').toLocaleDateString('ro-RO',{day:'numeric',month:'short',year:'numeric'}):'—';
+const DOCS=[['itp','ITP'],['rca','Asigurare'],['rov','Rovinietă']];
+const daysLeft=d=>Math.ceil((new Date(d+'T00:00')-new Date(today()+'T00:00'))/864e5);
+const kms=()=>[...F(),...V()].map(x=>x.km);
+const curKm=()=>Math.max(0,...kms());
+function fuelCalc(){
+  const f=[...F()].sort((a,b)=>a.km-b.km),per={};let tl=0,tk=0;
+  const P0=x=>per[x]=per[x]||{l:0,k:0,c:0};
+  for(let i=1;i<f.length;i++){const dk=f[i].km-f[i-1].km;if(dk<=0)continue;const p=P0(f[i].date.slice(0,7));p.l+=f[i].l;p.k+=dk;tl+=f[i].l;tk+=dk}
+  for(const x of f)P0(x.date.slice(0,7)).c+=x.cost;
+  return{per,avg:tk?tl/tk*100:null}
+}
+const mAvg=p=>p.k?p.l/p.k*100:null;
+const monthName=m=>new Date(m+'-01T00:00').toLocaleDateString('ro-RO',{month:'long',year:'numeric'});
+function status(d){if(!d)return['no','Nesetat'];const k=daysLeft(d);
+  if(k<0)return['er','Expirat'];if(k<=1)return['er','24 de ore'];if(k<=7)return['er',k+' zile'];if(k<=30)return['wa',k+' zile'];return['ok',k+' zile']}
+function nextService(){
+  const c=car(),ikm=parseFloat(c.ikm),imo=parseFloat(c.imo);
+  if(!(ikm>0)&&!(imo>0))return{c:'no',t:'Nesetat',s:'Setează intervalul din Mașini'};
+  const l=[...V()].sort((a,b)=>b.km-a.km||b.date.localeCompare(a.date))[0];
+  if(!l)return{c:'no',t:'—',s:'Adaugă prima intrare în service'};
+  let kl=null,dl=null,parts=[];
+  if(ikm>0){kl=l.km+ikm-curKm();parts.push(kl>0?n(kl,0)+' km rămași':'depășit cu '+n(-kl,0)+' km')}
+  if(imo>0){const d=new Date(l.date+'T00:00');d.setMonth(d.getMonth()+imo);dl=daysLeft(d.toISOString().slice(0,10));parts.push(dl>=0?dl+' zile rămase':'depășit cu '+(-dl)+' zile')}
+  const er=(kl!==null&&kl<=0)||(dl!==null&&dl<0),wa=(kl!==null&&kl<=1000)||(dl!==null&&dl<=30);
+  return{c:er?'er':wa?'wa':'ok',t:er?'Scadent':wa?'În curând':'La zi',s:parts.join(' · '),alert:er||wa,p:parts.join(' · ')}
+}
+function alerts(){let h='';
+  for(const[k,l]of DOCS){const d=car().docs[k];if(!d)continue;const x=daysLeft(d);
+    if(x<0)h+=`<div class="alert">${l} a expirat pe ${fd(d)}</div>`;
+    else if(x<=1)h+=`<div class="alert">${l} expiră în 24 de ore</div>`;
+    else if(x<=7)h+=`<div class="alert">${l} expiră în ${x} zile</div>`;
+    else if(x<=30)h+=`<div class="alert w">${l} expiră în ${x} zile (${fd(d)})</div>`}
+  const s=nextService();if(s.alert)h+=`<div class="alert${s.c==='wa'?' w':''}">Service ${s.t.toLowerCase()}: ${s.p}</div>`;
+  return h}
+function docRows(){return DOCS.map(([k,l])=>{const d=car().docs[k],[c,t]=status(d);
+  return `<button class="row" data-a="doc" data-k="${k}"><span>${l}<small>${d?'Expiră '+fd(d):'Apasă pentru a seta data'}</small></span><span class="pill ${c}">${t}</span></button>`}).join('')}
+function chart(per){
+  const m=Object.keys(per).filter(k=>mAvg(per[k])).sort().slice(-8);
+  if(m.length<2)return '';
+  const v=m.map(k=>mAvg(per[k])),mx=Math.max(...v),w=320/m.length;
+  return `<h2>Consum pe luni (L/100 km)</h2><div class="grp" style="padding:12px"><svg viewBox="0 0 320 120" width="100%" role="img" aria-label="Consum pe luni">${m.map((k,i)=>{const h=v[i]/mx*72;return `<rect x="${i*w+w*.2}" y="${92-h}" width="${w*.6}" height="${h}" rx="5" fill="var(--ac)"/><text x="${i*w+w/2}" y="${86-h}" text-anchor="middle">${n(v[i])}</text><text x="${i*w+w/2}" y="108" text-anchor="middle">${new Date(k+'-01T00:00').toLocaleDateString('ro-RO',{month:'short'})}</text>`}).join('')}</svg></div>`}
+function render(){
+  const {per,avg}=fuelCalc(),months=Object.keys(per).sort().reverse(),cm=today().slice(0,7),c=car();
+  const T={home:esc(c.name)+' <i>▾</i>',fuel:'Combustibil',service:'Carte service',docs:'Acte'}[tab];
+  let h=`<div class="top"><h1 ${tab==='home'?'data-a="cars" style="cursor:pointer"':''}>${T}</h1>${tab==='docs'||tab==='home'?'':'<button class="add" data-a="new" aria-label="Adaugă">+</button>'}${tab==='home'?'<button class="add" data-a="fab" aria-label="Adaugă alimentare">+</button>':''}</div>`;
+  if(tab==='home'){
+    h+=alerts();
+    const cur=per[cm],ca=cur&&mAvg(cur),a=ca??avg;
+    h+=`<div class="hero"><small style="color:var(--tx2);font-size:13px">Consum mediu ${ca?'luna aceasta':'total'}${c.fuel?' · '+esc(c.fuel):''}</small><div class="big">${a!=null?n(a):'—'}<span>L/100 km</span></div></div>`;
+    const ks=kms(),dist=ks.length?Math.max(...ks)-Math.min(...ks):0,fc=F().reduce((s,x)=>s+x.cost,0),sc=V().reduce((s,x)=>s+x.cost,0);
+    h+=`<div class="stats"><div><b>${n(curKm(),0)}</b><small>km actuali</small></div><div><b>${cur?lei(cur.c):'0 lei'}</b><small>combustibil luna aceasta</small></div></div>`;
+    h+=`<div class="stats"><div><b>${dist>0?n(fc/dist,2):'—'}</b><small>lei/km combustibil</small></div><div><b>${dist>0?n((fc+sc)/dist,2):'—'}</b><small>lei/km cu service</small></div></div>`;
+    const s=nextService();
+    h+=`<h2>Următorul service</h2><div class="grp"><button class="row" data-a="car" data-id="${c.id}"><span>Interval service<small>${s.s}</small></span><span class="pill ${s.c}">${s.t}</span></button></div>`;
+    h+=`<h2>Acte</h2><div class="grp">${docRows()}</div>`;
+  }
+  if(tab==='fuel'){
+    h+=chart(per);
+    h+=`<h2>Pe luni</h2><div class="grp">${months.length?months.map(m=>{const a=mAvg(per[m]);return `<div class="row"><span>${monthName(m)}<small>${per[m].k?n(per[m].l)+' L · '+n(per[m].k,0)+' km':'Date insuficiente'}</small></span><span class="r"><b>${a?n(a)+' L/100':'—'}</b><small>${lei(per[m].c)}</small></span></div>`}).join(''):'<div class="empty">Adaugă prima alimentare cu +</div>'}</div>`;
+    const list=[...F()].sort((a,b)=>b.km-a.km);
+    h+=`<h2>Alimentări</h2><div class="grp">${list.length?list.map(x=>`<button class="row" data-a="edit" data-t="fuel" data-id="${x.id}"><span>${fd(x.date)}<small>${n(x.km,0)} km · ${n(x.l,2)} L${x.note?' · '+esc(x.note):''}</small></span><span class="r">${lei(x.cost)}<small>${n(x.cost/x.l,2)} lei/L</small></span></button>`).join(''):'<div class="empty">Nicio alimentare</div>'}</div>`;
+    h+=`<p class="hint">Consumul se calculează între alimentări, presupunând rezervor plin la fiecare. Prima intrare doar fixează startul.</p>`;
+  }
+  if(tab==='service'){
+    const list=[...V()].sort((a,b)=>b.km-a.km),tot=list.reduce((s,x)=>s+x.cost,0);
+    h+=`<div class="stats" style="margin-top:0"><div><b>${list.length}</b><small>intrări</small></div><div><b>${lei(tot)}</b><small>total cheltuit</small></div></div>`;
+    h+=`<h2>Istoric</h2><div class="grp">${list.length?list.map(x=>`<button class="row" data-a="edit" data-t="service" data-id="${x.id}"><span>${esc(x.desc)}<small>${fd(x.date)} · intrat la ${n(x.km,0)} km${x.note?' · '+esc(x.note):''}</small></span><span class="r">${lei(x.cost)}</span></button>`).join(''):'<div class="empty">Adaugă prima intrare în service cu +</div>'}</div>`;
+  }
+  if(tab==='docs')h+=alerts()+`<div class="grp">${docRows()}</div><p class="hint">Avertizările apar aici cu 30 de zile, 7 zile și 24 de ore înainte. Pe iPhone pagina nu poate trimite notificări când e închisă.</p>`;
+  $('#app').innerHTML=h;
+  const I={home:'<path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/>',fuel:'<path d="M5 21V5a2 2 0 012-2h6a2 2 0 012 2v16M3 21h14M15 9h2a2 2 0 012 2v5a1.5 1.5 0 003 0V8l-3-3M7 8h6"/>',service:'<path d="M14.7 6.3a4 4 0 005 5L21 17l-4 4-5.7-1.3-8-8L3 6l4-4z" transform="scale(.9) translate(1 1)"/>',docs:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>'};
+  const L={home:'Acasă',fuel:'Combustibil',service:'Service',docs:'Acte'};
+  $('#nav').innerHTML=Object.keys(L).map(k=>`<button data-a="tab" data-k="${k}" class="${tab===k?'on':''}"><svg viewBox="0 0 24 24">${I[k]}</svg>${L[k]}</button>`).join('');
+}
+const field=(id,l,type,val,x='')=>`<div class="f"><label for="${id}">${l}</label><input id="${id}" type="${type}" value="${esc(val)}" ${x}></div>`;
+const num='inputmode="decimal" step="0.01" min="0" placeholder="0,00"';
+function sheet(type,id,k){
+  const item=id&&type!=='car'?S[type].find(x=>x.id===id):null;let h='';
+  if(type==='fuel')h=`<h3>${item?'Modifică alimentarea':'Alimentare nouă'}</h3><div class="grp">${field('d','Data','date',item?.date||today())}${field('km','Kilometraj','number',item?.km??(curKm()||''),'inputmode="numeric" min="0" placeholder="km"')}${field('l','Litri','number',item?.l,num)}${field('c','Sumă plătită (lei)','number',item?.cost,num)}${field('nt','Notă','text',item?.note,'placeholder="opțional"')}</div>`;
+  if(type==='service')h=`<h3>${item?'Modifică intrarea':'Intrare în service'}</h3><div class="grp">${field('d','Data','date',item?.date||today())}${field('km','Kilometraj la intrare','number',item?.km??(curKm()||''),'inputmode="numeric" min="0" placeholder="km"')}${field('t','Ce s-a schimbat','text',item?.desc,'placeholder="ex: ulei, filtre"')}${field('c','Sumă plătită (lei)','number',item?.cost,num)}${field('nt','Notă','text',item?.note,'placeholder="opțional"')}</div>`;
+  if(type==='doc')h=`<h3>${DOCS.find(x=>x[0]===k)[1]}</h3><div class="grp">${field('d','Expiră la','date',car().docs[k])}</div>`;
+  if(type==='car'){const c=id?S.cars.find(x=>x.id===id):null;h=`<h3>${c?'Mașina':'Mașină nouă'}</h3><div class="grp">${field('nm','Nume','text',c?.name,'placeholder="ex: Dacia Logan"')}${field('fu','Combustibil','text',c?.fuel,'placeholder="Benzină, Motorină, GPL…"')}${field('ik','Service la fiecare (km)','number',c?.ikm,'inputmode="numeric" placeholder="10000"')}${field('im','Service la fiecare (luni)','number',c?.imo,'inputmode="numeric" placeholder="12"')}</div>`}
+  if(type==='cars'){h=`<h3>Mașini</h3><div class="grp">${S.cars.map(c=>`<button class="row" data-a="pick" data-id="${c.id}"><span>${esc(c.name)}<small>${esc(c.fuel)||'—'}</small></span><span style="color:var(--ac)">${c.id===car().id?'✓':''}</span></button>`).join('')}</div>
+  <div class="grp" style="margin-top:12px"><button class="row" data-a="car" data-id="${car().id}">Editează mașina curentă</button><button class="row" data-a="car">Adaugă mașină</button><button class="row" data-a="exp">Salvează backup</button><label class="row" style="cursor:pointer">Importă backup<input type="file" id="imp" accept=".json,application/json" hidden></label></div><p class="hint">Importul înlocuiește toate datele de acum.</p><button class="btn c" data-a="close">Gata</button>`;$('#sheet').innerHTML=h;$('#sh').classList.add('o');return}
+  h+=`<button class="btn" data-a="save" data-t="${type}" data-id="${id||''}" data-k="${k||''}">Salvează</button>`;
+  if(item||(type==='car'&&id&&S.cars.length>1))h+=`<button class="btn d" data-a="del" data-t="${type}" data-id="${id}">Șterge</button>`;
+  else if(type==='doc'&&car().docs[k])h+=`<button class="btn d" data-a="clr" data-k="${k}">Șterge data</button>`;
+  h+=`<button class="btn c" data-a="close">Anulează</button>`;
+  $('#sheet').innerHTML=h;$('#sh').classList.add('o');
+}
+const close=()=>$('#sh').classList.remove('o');
+document.addEventListener('change',async e=>{
+  const f=e.target.files&&e.target.files[0];if(!f)return;
+  if(e.target.id==='imp'){try{const d=JSON.parse(await f.text());if(!d.S||!Array.isArray(d.S.cars))throw 0;S=d.S;save();close();render();toast('Backup importat')}catch(x){toast('Fișier de backup invalid')}}
+});
+document.addEventListener('click',async e=>{
+  if(e.target.id==='sh')return close();
+  const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,d=b.dataset,cid=car().id;
+  if(a==='tab'){tab=d.k;render();scrollTo(0,0)}
+  else if(a==='new')sheet(tab==='fuel'?'fuel':'service');
+  else if(a==='fab')sheet('fuel');
+  else if(a==='edit')sheet(d.t,d.id);
+  else if(a==='doc')sheet('doc',null,d.k);
+  else if(a==='cars')sheet('cars');
+  else if(a==='car')sheet('car',d.id||null);
+  else if(a==='pick'){S.cur=d.id;save();close();render()}
+  else if(a==='close')close();
+  else if(a==='exp'){try{const dl=await window.claude?.use?.('downloads');if(!dl)return toast('Salvarea nu e disponibilă aici');await dl.save({filename:'masina-backup.json',data:JSON.stringify({S})})}catch(x){if(x&&x.code!=='declined')toast('Nu s-a putut salva backup-ul')}}
+  else if(a==='del'){
+    if(d.t==='car'){S.fuel=S.fuel.filter(x=>x.car!==d.id);S.service=S.service.filter(x=>x.car!==d.id);S.cars=S.cars.filter(x=>x.id!==d.id);S.cur=S.cars[0].id}
+    else{S[d.t]=S[d.t].filter(x=>x.id!==d.id)}
+    save();close();render()}
+  else if(a==='clr'){car().docs[d.k]='';save();close();render()}
+  else if(a==='save'){
+    const v=i=>$('#'+i)?.value;
+    if(d.t==='car'){const nm=(v('nm')||'').trim();if(!nm){$('#nm').focus();return}
+      const o={name:nm,fuel:(v('fu')||'').trim(),ikm:v('ik'),imo:v('im')};
+      if(d.id)Object.assign(S.cars.find(x=>x.id===d.id),o);else{const id='c'+Date.now().toString(36);S.cars.push({id,docs:{itp:'',rca:'',rov:''},...o});S.cur=id}
+      save();close();render();return}
+    const date=v('d');if(!date){$('#d').focus();return}
+    if(d.t==='doc')car().docs[d.k]=date;
+    else{
+      const km=parseFloat(v('km')),c=parseFloat(v('c'));
+      if(isNaN(km)||isNaN(c)||km<0||c<0){$(isNaN(km)||km<0?'#km':'#c').focus();return}
+      const others=[...S.fuel,...S.service].filter(x=>x.car===cid&&x.id!==d.id).map(x=>x.km);
+      const mx=others.length?Math.max(...others):null;
+      if(mx!==null&&km<mx){if(!confirm('Kilometrajul introdus ('+n(km,0)+') e mai mic decât cel mai mare deja înregistrat ('+n(mx,0)+'). Continui oricum?'))return}
+      let o;
+      const note=(v('nt')||'').trim();
+      if(d.t==='fuel'){const l=parseFloat(v('l'));if(!(l>0)){$('#l').focus();return}o={date,km,l,cost:c,note}}
+      else{const t=(v('t')||'').trim();if(!t){$('#t').focus();return}o={date,km,desc:t,cost:c,note}}
+      const id=d.id||Date.now().toString(36);
+      if(d.id)Object.assign(S[d.t].find(x=>x.id===d.id),o);else S[d.t].push({id,car:cid,...o});
+    }
+    save();close();render();
+  }
+});
+render();
+</script>
+</body>
+</html>
